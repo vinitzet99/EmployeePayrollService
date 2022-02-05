@@ -78,6 +78,42 @@ public class EmployeePayrollFileDBService {
                         employeePayrollData.add(
                                 new EmployeePayrollData(rs.getInt(1), rs.getString(2), rs.getDouble(7)));
                     }
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Connection un-successfull");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return employeePayrollData;
+    }
+
+    /**
+     * retrieve data from employee_payroll
+     * gets connection
+     * if connection is success
+     * create statement
+     * execute statement update and select
+     * store result
+     * return result
+     */
+    public EmployeePayrollData updateEmployee() {
+        EmployeePayrollData employeePayrollData = new EmployeePayrollData();
+        try {
+            Connection con = getConnection();
+            if (con != null) {
+                try {
+                    Statement stmt = con.createStatement();
+                    int update =
+                            stmt.executeUpdate("update employee_payroll set basic_pay=300000.00 where name='Terisa';");
+                    ResultSet rs = stmt.executeQuery("Select * from employee_payroll where name ='Terisa';");
+                    while (rs.next()) {
+                        employeePayrollData = new EmployeePayrollData(rs.getInt(1), rs.getString(2), rs.getDouble(7));
+                    }
+                    con.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }

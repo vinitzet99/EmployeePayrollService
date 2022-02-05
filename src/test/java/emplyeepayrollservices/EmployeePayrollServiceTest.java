@@ -49,4 +49,14 @@ public class EmployeePayrollServiceTest {
         Assertions.assertEquals(3, data.size());
     }
 
+    /**
+     * validates update data
+     * retrieve Employee data
+     * check salary
+     */
+    @Test
+    public void updatedValue_shouldMatch_toActualDBResult() {
+        EmployeePayrollData data = new EmployeePayrollService().updateEmployee(DB_IO);
+        Assertions.assertEquals(300000, data.getSalary());
+    }
 }

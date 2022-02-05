@@ -76,6 +76,7 @@ public class EmployeePayrollService {
      * checks io Operation
      * calls retrieveEmployee of EmployeeDB
      * returns list
+     *
      * @param ioService
      * @return
      */
@@ -84,6 +85,24 @@ public class EmployeePayrollService {
             return new EmployeePayrollFileDBService().retrieveEmployee();
         } else {
             List<EmployeePayrollData> employee = new ArrayList<>();
+            return employee;
+        }
+    }
+
+    /**
+     * Update Employee Data
+     * checks io Operation
+     * calls UpdateEmployee of EmployeeDB
+     * returns new Data
+     *
+     * @param ioService
+     * @return
+     */
+    public EmployeePayrollData updateEmployee(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return new EmployeePayrollFileDBService().updateEmployee();
+        } else {
+            EmployeePayrollData employee = new EmployeePayrollData();
             return employee;
         }
     }
