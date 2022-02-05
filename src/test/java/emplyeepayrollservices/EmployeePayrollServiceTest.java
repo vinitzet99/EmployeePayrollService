@@ -1,3 +1,8 @@
+/**
+ * Author: Vinit Kumar
+ * Created: 05-Feb-2022
+ * Test File
+ */
 package emplyeepayrollservices;
 
 import employeepayrollservices.EmployeePayrollData;
@@ -6,7 +11,9 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.List;
 
+import static employeepayrollservices.EmployeePayrollService.IOService.DB_IO;
 import static employeepayrollservices.EmployeePayrollService.IOService.FILE_IO;
 
 public class EmployeePayrollServiceTest {
@@ -30,4 +37,16 @@ public class EmployeePayrollServiceTest {
         long entries = employeePayrollService.readEmployeePayrollData(FILE_IO);
         Assertions.assertEquals(3, entries);
     }
+
+    /**
+     * validates retrieval data
+     * retrieve Employee data
+     * check count
+     */
+    @Test
+    public void checkRetrieveDataCount() {
+        List<EmployeePayrollData> data = new EmployeePayrollService().retrieveEmployee(DB_IO);
+        Assertions.assertEquals(3, data.size());
+    }
+
 }

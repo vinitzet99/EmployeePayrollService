@@ -1,3 +1,8 @@
+/**
+ * Author: Vinit Kumar
+ * Created: 05-Feb-2022
+ * Service Class
+ */
 package employeepayrollservices;
 
 import java.util.ArrayList;
@@ -8,7 +13,12 @@ public class EmployeePayrollService {
     public enum IOService {CONSOLE_IO, FILE_IO, DB_IO, REST_IO}
 
     private List<EmployeePayrollData> employeePayrollList;
-    public EmployeePayrollService(){};
+
+    public EmployeePayrollService() {
+    }
+
+    ;
+
     public EmployeePayrollService(List<EmployeePayrollData> employeePayrollList) {
         this.employeePayrollList = employeePayrollList;
     }
@@ -59,5 +69,22 @@ public class EmployeePayrollService {
             return new EmployeePayrollFileIOService().countEntries();
         }
         return -2;
+    }
+
+    /**
+     * retrieve Employee Data
+     * checks io Operation
+     * calls retrieveEmployee of EmployeeDB
+     * returns list
+     * @param ioService
+     * @return
+     */
+    public List<EmployeePayrollData> retrieveEmployee(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return new EmployeePayrollFileDBService().retrieveEmployee();
+        } else {
+            List<EmployeePayrollData> employee = new ArrayList<>();
+            return employee;
+        }
     }
 }
