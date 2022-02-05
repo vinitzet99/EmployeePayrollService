@@ -58,6 +58,17 @@ public class EmployeePayrollServiceTest {
     public void updatedValue_shouldMatch_toActualDBResult() {
         EmployeePayrollData data = new EmployeePayrollService().updateEmployee(DB_IO);
         Assertions.assertEquals(3000000, data.getSalary());
-        Assertions.assertEquals("Terisa",data.getName());
+        Assertions.assertEquals("Terisa", data.getName());
+    }
+
+    /**
+     * validates date range data
+     * retrieve data by date range
+     * check count
+     */
+    @Test
+    public void validateDateRange() {
+        List<EmployeePayrollData> data = new EmployeePayrollService().employeeDateRange(DB_IO);
+        Assertions.assertEquals(2, data.size());
     }
 }

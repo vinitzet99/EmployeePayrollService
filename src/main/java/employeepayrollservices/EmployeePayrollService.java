@@ -106,4 +106,22 @@ public class EmployeePayrollService {
             return employee;
         }
     }
+
+    /**
+     * retrieve Employee Data based on date
+     * checks io Operation
+     * calls retrieveEmployee of EmployeeDB
+     * returns list
+     *
+     * @param ioService
+     * @return
+     */
+    public List<EmployeePayrollData> employeeDateRange(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return new EmployeePayrollFileDBService().employeeDateRange();
+        } else {
+            List<EmployeePayrollData> employee = new ArrayList<>();
+            return employee;
+        }
+    }
 }
