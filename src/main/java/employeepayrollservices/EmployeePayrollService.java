@@ -110,7 +110,7 @@ public class EmployeePayrollService {
     /**
      * retrieve Employee Data based on date
      * checks io Operation
-     * calls retrieveEmployee of EmployeeDB
+     * calls employeeDateRange of  EmployeeDB
      * returns list
      *
      * @param ioService
@@ -119,6 +119,24 @@ public class EmployeePayrollService {
     public List<EmployeePayrollData> employeeDateRange(IOService ioService) {
         if (ioService.equals(IOService.DB_IO)) {
             return new EmployeePayrollFileDBService().employeeDateRange();
+        } else {
+            List<EmployeePayrollData> employee = new ArrayList<>();
+            return employee;
+        }
+    }
+
+    /**
+     * retrieve Employee Data analysis
+     * checks io Operation
+     * calls employeeAnalysis of  EmployeeDB
+     * returns list
+     *
+     * @param ioService
+     * @return
+     */
+    public List<?> employeeAnalysis(IOService ioService) {
+        if (ioService.equals(IOService.DB_IO)) {
+            return new EmployeePayrollFileDBService().employeeAnalysis();
         } else {
             List<EmployeePayrollData> employee = new ArrayList<>();
             return employee;

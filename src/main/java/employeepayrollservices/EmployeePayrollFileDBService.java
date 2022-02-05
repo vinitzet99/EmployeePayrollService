@@ -7,6 +7,7 @@ package employeepayrollservices;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class EmployeePayrollFileDBService {
@@ -157,6 +158,41 @@ public class EmployeePayrollFileDBService {
                     while (rs.next()) {
                         employeePayrollData.add(
                                 new EmployeePayrollData(rs.getInt(1), rs.getString(2), rs.getDouble(7)));
+                    }
+                    con.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("Connection un-successfull");
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return employeePayrollData;
+    }
+
+    /**
+     * retrieve data from employee_payroll (sum,max,min,avg,count by gender)
+     * gets connection
+     * if connection is success
+     * create statement
+     * execute statement
+     * store result by iterating data set
+     * return result
+     */
+    public List<?> employeeAnalysis() {
+        List employeePayrollData = new ArrayList<>();
+        try {
+            Connection con = getConnection();
+            if (con != null) {
+                try {
+                    Statement stmt = con.createStatement();
+                    ResultSet rs = stmt.executeQuery(" select sum(basic_pay),avg(basic_pay),min(basic_pay),max" +
+                            "(basic_pay),count(name),gender from employee_payroll group by gender;");
+                    while (rs.next()) {
+                        employeePayrollData.add(Arrays.asList(rs.getDouble(1), rs.getDouble(2), rs.getDouble(3),
+                                rs.getDouble(4), rs.getDouble(5), rs.getString(6)));
                     }
                     con.close();
                 } catch (SQLException e) {

@@ -71,4 +71,29 @@ public class EmployeePayrollServiceTest {
         List<EmployeePayrollData> data = new EmployeePayrollService().employeeDateRange(DB_IO);
         Assertions.assertEquals(2, data.size());
     }
+
+    /**
+     * validate Employee Analysis
+     * retrieve analysis list
+     * assert with original value
+     */
+    @Test
+    public void validateEmployeeAnalysis() {
+        List<?> data = new EmployeePayrollService().employeeAnalysis(DB_IO);
+        List<?> data1 = (List<?>) data.get(0);
+        System.out.println(data1);
+        Assertions.assertEquals(4000000.00, data1.get(0));
+        Assertions.assertEquals(2000000.00, data1.get(1));
+        Assertions.assertEquals(1000000.00, data1.get(2));
+        Assertions.assertEquals(3000000.00, data1.get(3));
+        Assertions.assertEquals(2.0, data1.get(4));
+        data1 = (List<?>) data.get(1);
+        Assertions.assertEquals(3000000.00, data1.get(0));
+        Assertions.assertEquals(3000000.00, data1.get(1));
+        Assertions.assertEquals(3000000.00, data1.get(2));
+        Assertions.assertEquals(3000000.00, data1.get(3));
+        Assertions.assertEquals(1.0, data1.get(4));
+
+
+    }
 }
