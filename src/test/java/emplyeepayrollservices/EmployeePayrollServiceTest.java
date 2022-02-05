@@ -52,11 +52,12 @@ public class EmployeePayrollServiceTest {
     /**
      * validates update data
      * retrieve Employee data
-     * check salary
+     * check salary and name
      */
     @Test
     public void updatedValue_shouldMatch_toActualDBResult() {
         EmployeePayrollData data = new EmployeePayrollService().updateEmployee(DB_IO);
         Assertions.assertEquals(3000000, data.getSalary());
+        Assertions.assertEquals("Terisa",data.getName());
     }
 }

@@ -97,7 +97,10 @@ public class EmployeePayrollFileDBService {
      * if connection is success
      * create statement prepared statement for update
      * set values
-     * execute statement update and select
+     * execute statement update
+     * create statement prepared statement for select
+     * set values
+     * execute statement update
      * store result
      * return result
      */
@@ -112,7 +115,9 @@ public class EmployeePayrollFileDBService {
                     pstmt.setDouble(1, 3000000.00);
                     pstmt.setString(2,"Terisa");
                     int a=pstmt.executeUpdate();
-                    ResultSet rs = stmt.executeQuery("Select * from employee_payroll where name ='Terisa';");
+                    pstmt=con.prepareStatement("select * from employee_payroll where name =?;");
+                    pstmt.setString(1,"Terisa");
+                    ResultSet rs= pstmt.executeQuery();
                     while (rs.next()) {
                         employeePayrollData = new EmployeePayrollData(rs.getInt(1), rs.getString(2), rs.getDouble(7));
                     }
