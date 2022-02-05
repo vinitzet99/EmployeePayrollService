@@ -8,7 +8,9 @@ import java.util.List;
 
 public class EmployeePayrollFileIOService {
     EmployeePayrollFileIOService() {
-    };
+    }
+
+    ;
 
     public static String PAYROLL_FILE_NAME = "resources/payroll-file.txt";
 
@@ -27,11 +29,19 @@ public class EmployeePayrollFileIOService {
 
     }
 
-    public long countEntries(){
-        try{
+    public long countEntries() {
+        try {
             return Files.lines(new File(PAYROLL_FILE_NAME).toPath()).count();
-        }catch (IOException e){
+        } catch (IOException e) {
             return -1;
+        }
+    }
+
+    public void printData() {
+        try {
+            Files.lines(new File(PAYROLL_FILE_NAME).toPath()).forEach(System.out::println);
+        } catch (IOException e) {
+            System.out.println(e);
         }
     }
 }
