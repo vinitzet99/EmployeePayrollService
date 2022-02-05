@@ -57,6 +57,6 @@ public class EmployeePayrollServiceTest {
     @Test
     public void updatedValue_shouldMatch_toActualDBResult() {
         EmployeePayrollData data = new EmployeePayrollService().updateEmployee(DB_IO);
-        Assertions.assertEquals(300000, data.getSalary());
+        Assertions.assertEquals(3000000, data.getSalary());
     }
 }
